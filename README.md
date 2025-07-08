@@ -163,7 +163,7 @@ add address=172.18.20.2/30 gateway=172.18.20.1 gateway6="" name=docker-awg-veth
 2) Добавим правило в mangle для изменения mss для трафика, уходящего в контейнер. Поместите его после правила с RFC1918 (его мы создали ранее).
 ```
 /ip firewall mangle
-add action=change-mss chain=forward new-mss=1360 out-interface=docker-awg-veth passthrough=yes protocol=tcp tcp-flags=syn tcp-mss=1453-6553
+add action=change-mss chain=forward new-mss=1360 out-interface=docker-awg-veth passthrough=yes protocol=tcp tcp-flags=syn tcp-mss=1420-65535
 ```
 
 3) Назначим на созданный интерфейс IP адрес. IP 172.18.20.2 возьмёт себе контейнер, а 172.18.20.1 будет адрес RouterOS.
